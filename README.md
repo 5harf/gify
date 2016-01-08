@@ -6,10 +6,11 @@
 
 - Node 0.12.x
 
-## Development
-
 ### Installing Dependencies
 
 npm install
 
+## Starting App
 
+From root directory run node server/server.js
+Point browser at localhost:8080
