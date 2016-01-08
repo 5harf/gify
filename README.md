@@ -8,9 +8,9 @@
 
 ### Installing Dependencies
 
-npm install
+```npm install```
 
 ## Starting App
 
-From root directory run node server/server.js
+From root directory run ```node server/server.js```
 Point browser at localhost:8080
