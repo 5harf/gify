@@ -1,0 +1,12 @@
+<div ng-controller="MainCtrl">
+  <form name="signupForm" ng-submit='main.getGif(query)'>
+    <input type='text'ng-model='query' placeholder="Search Term">
+    <button>Go</button>
+  </form>
+  <div>
+    <!-- <img src="http://media4.giphy.com/media/3o6UB65bfF8P1anIZ2/200.gif"> -->
+    <img src="{{main.gif.image}}">
+  </div>
+</div>
+
+

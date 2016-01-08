@@ -1,0 +1,17 @@
+{
+  "name": "giffy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "giphy": "0.0.4",
+    "lodash": "^3.10.1"
+  }
+}
