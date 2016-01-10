@@ -21,9 +21,7 @@
             data: {query: query}
           })
         .then(function (data) {
-          console.log(data);
           services.gif.image = data.data;
-
         })
         .catch(function(err) {
             throw err;

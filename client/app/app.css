@@ -1,1 +1,12 @@
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+.active {
+  background-color: grey;
+  color: #f2f2f2;
+}
+
+.container {
+  width: 7.5rem;
+}
+
+.searchInput {
+  border-radius: .5rem;
+}

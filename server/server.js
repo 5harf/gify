@@ -14,6 +14,8 @@ var giphy = require( 'giphy' )( 'dc6zaTOxFJmzC' );
 
 var bodyParser = require('body-parser');
 
+var _ = require('lodash');
+
 app.use(bodyParser.json());
 
 app.use('/', express.static(path.join(__dirname, '../client/')));
@@ -44,13 +46,22 @@ app.post('/gif', function (req, res) {
   client.quit();
 })
 
+app.get('/typeAhead', function (req, res) {
+  var query = req.query.query;
+  var client = redis.createClient();
+  client.keys(query + '*', function (err, replies) {
+    res.send(replies.slice(0, 5));
+    client.quit();
+  })
+})
+
 fs.readFile('./words.txt', 'utf8', function (err, data) {
   var client = redis.createClient();
   words = data.split('\n');
   words.pop();
   client.get(words[20], function (err, replies) {
     if (replies === null) {
-      words.forEach(function(word) {
+      _.each(words, function(word) {
         client.set(word, word, function () {});
       })
     }

@@ -4,16 +4,22 @@
   angular.module('gify')
   .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['mainFactory'];
+  MainCtrl.$inject = ['mainFactory', 'appFactory', '$scope'];
 
-  function MainCtrl(mainFactory) {
+  function MainCtrl(mainFactory, appFactory, $scope) {
     var self = this;
 
-    this.getGif = mainFactory.getGif;
+    self.debouncedSearch = appFactory.debouncedSearch;
 
-    this.gif = mainFactory.gif;
+    self.getGif = mainFactory.getGif;
 
+    self.gif = mainFactory.gif;
 
+    self.setCurrent = appFactory.setCurrent;
+
+    self.isCurrent = appFactory.isCurrent;
+
+    self.chooseQuery = appFactory.chooseQuery;
     
   }
 
