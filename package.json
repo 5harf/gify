@@ -2,7 +2,7 @@
   "name": "giffy",
   "version": "1.0.0",
   "scripts": {
-    "start": "npm install; node server/server.js",
+    "start": "npm install; node server/server.js"
   },
   "author": "",
   "license": "ISC",
