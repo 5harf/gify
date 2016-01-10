@@ -22,7 +22,7 @@ app.use('/', express.static(path.join(__dirname, '../client/')));
 
 app.post('/gif', function (req, res) {
   var query = req.body.query;
-  var client = redis.createClient();
+  var client = process.env.REDIS_URL ? redis.createClient(process.env.REDIS_URL) : redis.createClient();
   client.get(query, function (err, replies) {
     if (err) {
       throw err;
@@ -48,7 +48,7 @@ app.post('/gif', function (req, res) {
 
 app.get('/typeAhead', function (req, res) {
   var query = req.query.query;
-  var client = redis.createClient();
+  var client = process.env.REDIS_URL ? redis.createClient(process.env.REDIS_URL) : redis.createClient();
   client.keys(query + '*', function (err, replies) {
     res.send(replies.slice(0, 5));
     client.quit();
@@ -56,7 +56,7 @@ app.get('/typeAhead', function (req, res) {
 })
 
 fs.readFile('./words.txt', 'utf8', function (err, data) {
-  var client = redis.createClient();
+  var client = process.env.REDIS_URL ? redis.createClient(process.env.REDIS_URL) : redis.createClient();
   words = data.split('\n');
   words.pop();
   client.get(words[20], function (err, replies) {

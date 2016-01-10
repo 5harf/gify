@@ -1,10 +1,8 @@
 {
   "name": "giffy",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "npm install; node server/server.js",
   },
   "author": "",
   "license": "ISC",
