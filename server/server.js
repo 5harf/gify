@@ -8,6 +8,11 @@ var redis = require('redis');
 
 var fs = require('fs');
 
+var Promise = require('bluebird');
+
+//Promisify redis client functions
+Promise.promisifyAll(redis.RedisClient.prototype);
+
 var port = process.env.PORT || 8080;
 
 var giphy = require( 'giphy' )( 'dc6zaTOxFJmzC' );
@@ -55,18 +60,21 @@ app.get('/typeAhead', function (req, res) {
   })
 })
 
+
 fs.readFile('./words.txt', 'utf8', function (err, data) {
   var client = process.env.REDIS_URL ? redis.createClient(process.env.REDIS_URL) : redis.createClient();
   words = data.split('\n');
   words.pop();
-  client.get(words[20], function (err, replies) {
+  client.get('grandfather', function (err, replies) {
     if (replies === null) {
-      _.each(words, function(word) {
-        client.set(word, word, function () {});
+      Promise.all(_.map(words, function(word) {
+        return client.setAsync(word, word);
+      }))
+      .then(function() {
+        client.quit();
       })
     }
   })
-  client.quit();
 })
 
 app.listen(port);
