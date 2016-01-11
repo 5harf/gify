@@ -25,8 +25,8 @@ app.use(bodyParser.json());
 
 app.use('/', express.static(path.join(__dirname, '../client/')));
 
-app.post('/gif', function (req, res) {
-  var query = req.body.query;
+app.get('/gif', function (req, res) {
+  var query = req.query.query;
   var client = process.env.REDIS_URL ? redis.createClient(process.env.REDIS_URL) : redis.createClient();
   client.get(query, function (err, replies) {
     if (err) {

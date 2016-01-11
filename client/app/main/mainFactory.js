@@ -16,9 +16,8 @@
 
     function getGif(query) {
         return $http({
-            method: 'POST',
-            url: '/gif',
-            data: {query: query}
+            method: 'GET',
+            url: '/gif?query=' + query
           })
         .then(function (data) {
           services.gif.image = data.data;

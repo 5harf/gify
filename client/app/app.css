@@ -5,6 +5,7 @@
 
 .container {
   width: 7.5rem;
+  position: fixed;
 }
 
 .searchInput {
