@@ -1,15 +1,18 @@
 <div ng-controller="MainCtrl">
-  <form name="searchGiphy" ng-submit='main.getGif(query)'>
-    <input class="searchInput" type='text'ng-model='query' ng-keyup="main.debouncedSearch(query)" placeholder="Search Term">
-    <button>Go</button>
-  </form>
-  <div class="container" ng-show="main.responses">
-    <div ng-repeat="response in main.responses" ng-class="{active: main.isCurrent($index)}" ng-mouseenter="main.setCurrent($index)" style="cursor:pointer">
-      <div ng-click="main.chooseQuery(response)">{{response}}</div>
+  <div class="outerContainer">
+    <form name="searchGiphy" ng-submit="main.getGif(query)">
+      <input class="searchInput inputs" type="text" ng-model="query" ng-keyup="main.debouncedSearch(query)" placeholder="Search Term">
+      <br>
+      <div class="typeAheadContainer" ng-show="main.responses">
+        <div ng-repeat="response in main.responses" ng-class="{active: main.isCurrent($index)}" ng-mouseenter="main.setCurrent($index)" ng-mouseleave="main.unsetCurrent($index)" style="cursor:pointer" class="typeAhead">
+          <div ng-click="main.chooseQuery(response)">{{response}}</div>
+        </div>
+      </div>
+      <button class="btn btn-warning inputs">Go</button>
+    </form>
+    <div class="gif">
+      <img src="{{main.gif.image}}">
     </div>
-  </div>
-  <div>
-    <img src="{{main.gif.image}}">
   </div>
 </div>
 

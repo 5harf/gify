@@ -20,6 +20,8 @@
     self.isCurrent = appFactory.isCurrent;
 
     self.chooseQuery = appFactory.chooseQuery;
+
+    self.unsetCurrent = appFactory.unsetCurrent;
     
   }
 
